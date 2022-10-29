@@ -1,0 +1,90 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.096);
+    align-items: center;
+    background-color: white;
+    position: fixed;
+    width: 100vw;
+    margin-top: -5vw;
+    
+}
+.flag {
+    width: 5vw;
+    height: 5vw;
+    cursor: pointer;
+
+}
+.flagbloc {
+    display: flex;
+    margin-top: 1.5vw;
+    cursor: pointer;
+}
+
+.user_logo {
+    width: 5vw;
+    height: 3vw;
+    margin-top: 1vw;
+    position: absolute;
+    margin-left: -4vw ;
+    cursor: pointer;
+}
+
+
+.header_text {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+
+.logo_user_bloc {
+    display: flex;
+    margin-left: 45vw;
+
+}
+
+.header_text2 {
+    position: absolute;
+    margin-left: 45vw;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.search {
+    position: absolute;
+    width: 2.5vw;
+    height: 2.5vw;
+    margin-top: -1vw ;
+    margin-left: 28vw;
+    cursor: pointer;
+}
+
+.input {
+    border-radius: 5vw;
+    width: 30vw;
+    height: 2vw;
+    margin-top: -1vw;
+    position: absolute;
+}
+
+.categories {
+    position: absolute;
+ margin-left: 47vw;
+ margin-top: 2vw;
+ color: white;
+ width: 30vw;
+    
+}
+
+
+
+.Link {
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+.privateRoom {
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,33 @@
+.newsBlokc {
+    display: flex;
+    flex-direction: column;
+    width: 24vw;
+    margin-top: 5vw;
+    box-shadow: 1px 5px 5px 5px;
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.imageNews {
+    width: 24vw;
+    height: 20vw;
+    cursor: pointer;
+}
+
+
+.newsBlock {
+    display: flex;
+    justify-content: space-around;
+    width: 70vw;
+    flex-wrap: wrap;
+   
+}
+
+.textNews {
+    word-break: break-all;
+  
+    
+}
+

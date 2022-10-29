@@ -1,0 +1,28 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    height: 15vw;
+    background-color:dimgray;
+    margin-top: 3vw;
+}
+
+.footerLogo {
+    width: 9vw;
+    height: 10vw;
+}
+
+.footerBlock {
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    margin-top: 1vw;
+}
+
+.href {
+    text-decoration: none;
+    color: white;
+}
+.href:hover {
+    text-decoration: none;
+    color: grey
+}

@@ -1,0 +1,12 @@
+.categoriesBacraund {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(37, 37, 37);
+    z-index: 50;
+    position: absolute;
+    
+}
+
+.el {
+    cursor: pointer;
+}

@@ -1,0 +1,42 @@
+.news {
+    width: 40vw;
+    background-color: white;
+    box-shadow: 5px 5px 5px 100vw rgba(255, 255, 255, 0.658);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+.img {
+    width: 30vw;
+    height: 30vw;
+    margin-top: 2vw;
+    margin-left: 1vw;
+}
+
+.text {
+    padding: 0vw 1vw 1vw 1vw;
+    word-break: break-all;
+    width: 20vw;
+
+}
+
+.commentInput {
+    border-radius: 5vw;
+    width: 20vw;
+    height: 2vw;
+}
+
+.commetntBlock {
+    display: flex;
+    justify-content: space-between;
+    width: 26vw;
+    margin-left: 6vw;
+}
+
+.buttonCommentAdd {
+    border-radius: 3vw;
+    background-color: blue;
+    cursor: pointer;
+}

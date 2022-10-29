@@ -1,0 +1,5 @@
+.conteyner {
+    display: flex;
+    margin-top: 5vw;
+    justify-content: space-around;
+}

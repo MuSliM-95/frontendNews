@@ -1,0 +1,55 @@
+.signinBloc {
+    text-align: center;
+    display: flex;
+  justify-content: center;
+  background-color: grey;
+  height: 100vw;
+
+}
+
+.inputSignin {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 5px 5px 5px black; 
+    width: 30vw;
+    height: 25vw;
+    margin-top: 9vw;
+  background-color: white;
+}
+
+.inputSignin input {
+    width: 15vw;
+   padding: 1vw;
+   border-radius: 0.3vw;
+margin-top: 2vw;
+    
+}
+
+.signinText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 6vw;
+    
+}
+
+.signinButton {
+    margin-top: 1vw;
+    padding: 0.3vw;
+    width: 5vw;
+    border-radius: 0.6vw;
+    cursor: pointer;
+}
+
+.signup {
+    display: flex;
+    justify-content: center;
+
+}
+
+.linkSignup {
+    margin: 1vw;
+}
+
