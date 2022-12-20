@@ -1,10 +1,18 @@
 import { composeWithDevTools } from "@redux-devtools/extension";
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { newsReducer } from "../reducer/NewsReducer";
+import { newsReducer } from "../reducer/newsReducer";
+import userReducer from "../reducer/userReducer";
+import { commentsReducer } from "../reducer/commentsReducer";
+import { newsCategoriesFindByid } from "../reducer/categoriesReducer";
 
 const store = createStore(
-  newsReducer,
+  combineReducers({
+    newsReducer,
+    userReducer,
+    commentsReducer,
+    newsCategoriesFindByid,
+  }),
   composeWithDevTools(applyMiddleware(thunk))
 );
 

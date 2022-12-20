@@ -3,7 +3,7 @@
     display: flex;
   justify-content: center;
   background-color: grey;
-  height: 100vw;
+  height: 50vw;
 
 }
 
@@ -12,7 +12,7 @@
     flex-direction: column;
     box-shadow: 1px 5px 5px 5px black; 
     width: 30vw;
-    height: 25vw;
+    height: 30vw;
     margin-top: 9vw;
   background-color: white;
 }
@@ -21,7 +21,7 @@
     width: 15vw;
    padding: 1vw;
    border-radius: 0.3vw;
-margin-top: 2vw;
+margin-top: 1.5vw;
     
 }
 
@@ -36,7 +36,7 @@ margin-top: 2vw;
 }
 
 .signinButton {
-    margin-top: 1vw;
+    margin-top: 1.5vw;
     padding: 0.3vw;
     width: 7vw;
     border-radius: 0.6vw;
@@ -53,3 +53,24 @@ margin-top: 2vw;
     margin: 1vw;
 }
 
+.error {
+
+    position: absolute;
+    margin-top: 20vw;
+    margin-left: 6vw;
+    color: red;
+
+
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vw;
+}
+
+.loadingLogo {
+    height: 30vw;
+    width: 30vw;
+}

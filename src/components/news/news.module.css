@@ -18,25 +18,13 @@
 .text {
     padding: 0vw 1vw 1vw 1vw;
     word-break: break-all;
-    width: 20vw;
+    width: 29vw;
 
 }
 
-.commentInput {
-    border-radius: 5vw;
-    width: 20vw;
-    height: 2vw;
-}
-
-.commetntBlock {
-    display: flex;
-    justify-content: space-between;
-    width: 26vw;
-    margin-left: 6vw;
-}
-
-.buttonCommentAdd {
-    border-radius: 3vw;
-    background-color: blue;
+.comments_Logo {
+    width: 5vw;
+    margin-left: 25vw;
     cursor: pointer;
 }
+

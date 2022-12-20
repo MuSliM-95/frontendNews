@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchByid, fetchNews } from "../../features/AsyncFetch/fetch";
+import { fetchByid, fetchNews } from "../../features/AsyncFetch/fetchNews";
 import styles from "./main.module.css";
+import logo from "../../assets/Default.png";
+import { Navigate } from "react-router-dom";
+import { readCategoriesRemove } from "../../features/reducer/categoriesReducer";
 
 const Main = () => {
-  const news = useSelector((state) => state.news);
-  const text = useSelector((state) => state.text);
+  const news = useSelector((state) => state.newsReducer.news);
+  const text = useSelector((state) => state.newsReducer.text);
+  const error = useSelector((state) => state.newsReducer.error);
+  const privateRoom = useSelector((state) => state.userReducer.userPersonal)
+  
+  // console.log(error);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,22 +26,28 @@ const Main = () => {
   );
 
   const handleNewsLink = (id) => {
+    
     dispatch(fetchByid(id));
+    dispatch(readCategoriesRemove())
+
   };
 
+  if (error) {
+    return <Navigate to="/error" />;
+  }
   return (
     <div className={styles.newsBlock}>
       {newsFilter.map((el) => {
         return (
           <Link
-            onClick={() => handleNewsLink(el._id)}
+            onClick={ () => handleNewsLink(el._id)}
             key={el._id}
             className={styles.newsBlokc}
-            to="/news"
+            to={!privateRoom && "/news"}
           >
             <img
               className={styles.imageNews}
-              src={`http://localhost:4000/${el.imageSrc}`}
+              src={el.imageSrc ? `http://localhost:4000/${el.imageSrc} ` : logo}
               alt="News"
             />
             <b className={styles.textNews}>{el.name}</b>

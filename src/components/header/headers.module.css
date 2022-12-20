@@ -40,6 +40,8 @@
 .logo_user_bloc {
     display: flex;
     margin-left: 45vw;
+    text-decoration: none;
+    color: black;
 
 }
 
@@ -69,10 +71,11 @@
 
 .categories {
     position: absolute;
- margin-left: 47vw;
- margin-top: 2vw;
- color: white;
- width: 30vw;
+    width: 20%;
+    margin-top: 3vw;
+    margin-left: 45vw;
+    box-shadow: 2px 2px 2px 2px ;
+    background-color: white;
     
 }
 
@@ -85,6 +88,15 @@
 }
 
 .privateRoom {
+    
     text-decoration: none;
     color: black;
+    
+}
+
+.PrivateRoom {
+    position: absolute;
+    display: flex;
+  margin-top: 40vw;
+  cursor: pointer;
 }

@@ -1,100 +1,97 @@
+import {
+  FINDBYID_NEWS_CATEGORIES_FULFILLED,
+  FINDBYID_NEWS_CATEGORIES_PENDING,
+  FINDBYID_NEWS_CATEGORIES_REJECTED,
+  FINDBYID_NEWS_FULFILLED,
+  FINDBYID_NEWS_PENDING,
+  FINDBYID_NEWS_REJECTED,
+  GET_NEWS_FULFILLED,
+  GET_NEWS_PENDING,
+  GET_NEWS_REJECTED,
+  TEXT,
+} from "../types";
+
 const initialState = {
   news: [],
   text: "",
-  error: null,
-  loading: true,
+  error: null, 
+  loading: Boolean,
   categories: [],
-  newsLink: '',
-  userId: null, 
-  token: null
+  newsLink: "",
 };
-
-const READNEWS = "READNEWS";
-const TEXT = "TEXT";
-const READCATEGORIES = "READCATEGORIES";
-const CATEGORIESREMOVE = "CATEGORIESREMOVE";
-const CATEGORIESBYID = "CATEGORIESBYID";
-const NEWS = "NEWS";
-const USERID = "USERID"
 
 export const newsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case READNEWS:
+    case GET_NEWS_PENDING:
+      return {
+        ...state,
+        loading: true, 
+        error: null
+      };
+    case GET_NEWS_REJECTED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GET_NEWS_FULFILLED:
       return {
         ...state,
         news: [...state.news, ...(state.news = [])],
         news: [...state.news, ...action.payload],
-        loading: false,
-        error: action.payload,
+        loading: true,
+        error: null,
       };
     case TEXT:
       return {
         ...state,
         text: action.payload,
       };
-    case READCATEGORIES:
+    case FINDBYID_NEWS_CATEGORIES_PENDING:
       return {
         ...state,
-        categories: [...state.categories, ...action.payload],
+        loading: true,
+        error: null
+      };
+    case FINDBYID_NEWS_CATEGORIES_REJECTED:
+      return {
+        ...state,
         loading: false,
         error: action.payload,
       };
-    case CATEGORIESREMOVE:
-      return {
-        ...state,
-        categories: [],
-        loading: false,
-        error: action.payload,
-      };
-    case CATEGORIESBYID:
+    case FINDBYID_NEWS_CATEGORIES_FULFILLED:
       return {
         ...state,
         news: [...state.news, ...(state.news = [])],
         news: [...state.news, ...action.payload],
         loading: false,
+        error: null,
+      };
+    case FINDBYID_NEWS_PENDING:
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case FINDBYID_NEWS_REJECTED:
+      return {
+        ...state,
+        loading: false,
         error: action.payload,
       };
-    case NEWS:
+    case FINDBYID_NEWS_FULFILLED:
       return {
         ...state,
         newsLink: action.payload,
         loading: false,
-        error: action.payload,
+        error: null,
       };
-      case USERID: 
-      return {
-        ...state,
 
-      }
     default:
       return state;
   }
 };
 
-export const readAsyncNews = (payload) => {
-  return { type: READNEWS, payload };
-};
-
 export const FilterText = (payload) => {
   return { type: TEXT, payload };
 };
-
-export const readCategories = (payload) => {
-  return { type: READCATEGORIES, payload };
-};
-
-export const readCategoriesRemove = (payload) => {
-  return { type: CATEGORIESREMOVE, payload };
-};
-
-export const readCategoriesByid = (payload) => {
-  return { type: CATEGORIESBYID, payload };
-};
-
-export const news = (payload) => {
-  return { type: NEWS, payload };
-};
-
-export const login = (payload) => {
-  return {type:USERID, payload }
-}

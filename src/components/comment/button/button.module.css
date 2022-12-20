@@ -1,0 +1,23 @@
+
+.inputBlock {
+    display: flex;
+    justify-content: space-between;
+    width: 26vw;
+    margin-left: 6vw;
+}
+
+.commentInput {
+    border-radius: 5vw;
+    width: 20vw;
+    height: 2vw;
+    margin-top: 3vw;
+   
+}
+.buttonCommentAdd {
+    border-radius: 3vw;
+    background-color: blue;
+    cursor: pointer;
+    margin-top: 3vw;
+    
+  
+}

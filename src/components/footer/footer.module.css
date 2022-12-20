@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     height: 15vw;
-    background-color:dimgray;
+    background-color: rgba(0, 0, 0, 0.815);
     margin-top: 3vw;
 }
 

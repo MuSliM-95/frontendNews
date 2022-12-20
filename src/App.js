@@ -1,52 +1,67 @@
 import styles from "./App.module.css";
 import MainPage from "./pages/mainPage/MainPage";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import News from "./pages/news/News";
+import NewsPage from "./pages/newsPage/NewsPage";
 import Layout from "./components/Layout/Layout";
 import Signin from "./pages/signin/Signin";
 import Signup from "./pages/signup/Signup";
 import { useSelector } from "react-redux";
-import PrivateRoom from "./pages/privateRoom/PrivateRoom";
+import store from "./features/store/NewsStore";
+import ErrorNews from "./pages/errorPages/ErrorNews";
 
 function App() {
-  const token = useSelector((state) => state.token);
-  if (!token) {
+  const token = useSelector((state) => state.userReducer.token);
+  const registration = useSelector((state) => state.userReducer.registration);
+  const error = store.getState();
+  // console.log(error.newsReducer.error);
+  
+
+  if (registration) {
     return (
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<Layout />}>
-            <Route path="mainPage" element={<MainPage />}></Route>
-            <Route
-              path="/*"
-              element={<Navigate to="/mainPage/" replace />}
-            ></Route>
-            <Route path="news" element={<News />}></Route>
+            <Route path="mainPage" element={<MainPage />} />
+            <Route path="/*" element={<Navigate to={"/mainPage"} replace />} />
+            <Route path="news" element={<NewsPage />} />
           </Route>
-          <Route path="privateRoom" element={<Signin />}></Route>
-          <Route path="signin" element={<Signin />}></Route>
-          <Route path="signup" element={<Signup />}></Route>
+          <Route path="signin" element={<Signin />} />
+          <Route path="signup" element={<Navigate to={"/signin"} replace />} />
+          <Route path="error" element={<ErrorNews />} />
         </Routes>
       </BrowserRouter>
     );
-  }else if(token){
+  } else if (!token) {
     return (
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<Layout />}>
-            <Route path="mainPage" element={<MainPage />}></Route>
-            <Route
-              path="/*"
-              element={<Navigate to="/mainPage/" replace />}
-            ></Route>
-            <Route path="news" element={<News />}></Route>
+            <Route path="mainPage" element={<MainPage />} />
+            <Route path="/*" element={<Navigate to={"/mainPage"} replace />} />
+            <Route path="news" element={<NewsPage />} />
           </Route>
-          <Route path="privateRoom" element={<PrivateRoom />}></Route>
-          <Route path="signin" element={<Signin />}></Route>
-          <Route path="signup" element={<Signup />}></Route>
+          <Route path="signin" element={<Signin />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="error" element={<ErrorNews />} />
         </Routes>
       </BrowserRouter>
     );
-  }
+  } else if (token) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<Layout />}>
+            <Route path="mainPage" element={<MainPage />} />
+            <Route path="/*" element={<Navigate to={"/mainPage"} replace />} />
+            <Route path="news" element={<NewsPage />} />
+          </Route>
+          <Route path="signin" element={<Navigate to={"/mainPage"} />} />
+          <Route path="signup" element={<Navigate to={"/mainPage"} />} />
+          <Route path="error" element={<ErrorNews />} />
+        </Routes>
+      </BrowserRouter>
+    );
 }
 
+}
 export default App;

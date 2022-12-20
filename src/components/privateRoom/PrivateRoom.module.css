@@ -1,0 +1,40 @@
+
+.conteyner {
+    display: flex;
+    justify-content: center;
+    margin-top: 4vw;
+}
+
+.PrivateRoom {
+    box-shadow: 5px 5px 5px 100vw  rgba(0, 0, 0, 0.281);
+    width: 32vw;
+    height: 40vw;
+    background-color: white;
+}
+
+.Link {
+    text-decoration: none;
+    color: black;
+}
+.headar {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    margin: 1vw;
+
+}
+
+.logoBloc {
+    display: flex;
+    justify-content: center;
+}
+
+.userblock {
+    padding: 3vw;
+    
+}
+
+.image {
+    width: 20vw;
+    height: 18vw;
+}
