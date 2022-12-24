@@ -11,7 +11,10 @@ const initialState = {
   comments: [],
   text: "",
   error: null,
-  loading: Boolean,
+  addCommetError: null,
+  loading: false,
+  commentsUpdate: false
+
 };
 
 export const commentsReducer = (state = initialState, action) => {
@@ -40,19 +43,19 @@ export const commentsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: null,
+        addCommetError: null,
       };
     case ADD_COMMENTS_FULFILLED:
       return {
         ...state,
         loading: false,
-        error: null,
+        addCommetError: null,
       };
     case ADD_COMMENTS_REJECTED:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        addCommetError: action.payload,
       };
 
     default:

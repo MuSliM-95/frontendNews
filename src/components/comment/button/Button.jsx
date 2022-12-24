@@ -1,11 +1,13 @@
 import styles from "./button.module.css";
-
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchAddComment } from "../../../features/AsyncFetch/fetchComments";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAddComment, fetchCommentsGet } from "../../../features/AsyncFetch/fetchComments";
+import { updateСomments } from "../../../features/reducer/commentsReducer";
 
-const Button = ({ news, userId }) => {
+const Button = ({ news, userId}) => {
+
   const [textComments, setTextComments] = useState("");
+ 
 
   const dispatch = useDispatch();
 
@@ -15,6 +17,7 @@ const Button = ({ news, userId }) => {
   const addComment = (newsId, comment, id) => {
     dispatch(fetchAddComment(newsId, comment, id));
     setTextComments("");
+    dispatch(fetchCommentsGet());
   };
   return (
     <div>

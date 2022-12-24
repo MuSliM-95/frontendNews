@@ -4,8 +4,6 @@ import logoFuter from "../../assets/Без названия (2)(1).png";
 import { useSelector } from "react-redux";
 
 const Footer = () => {
-  const privateRoom = useSelector((state) => state.userReducer.userPersonal);
-
 
   return (
     <div className={styles.footer}>
@@ -22,8 +20,9 @@ const Footer = () => {
           <h3>
             <a
               className={styles.href}
-              href={!privateRoom && "https://wa.me/79226661313"}
+              href={"https://wa.me/79226661313"}
               target="_blank"
+              rel="noreferrer"
             >
               WhatsApp
             </a>
@@ -32,8 +31,9 @@ const Footer = () => {
             {" "}
             <a
               className={styles.href}
-              href={!privateRoom && "https://t.me/HelloW0Rd"}
+              href={"https://t.me/HelloW0Rd"}
               target="_blank"
+              rel="noreferrer"
             >
               Наш телеграм
             </a>
@@ -44,8 +44,9 @@ const Footer = () => {
           <h3>
             <a
               className={styles.href}
-              href={!privateRoom && "https://wa.me/79226661313"}
+              href={"https://wa.me/79226661313"}
               target="_blank"
+              rel="noreferrer"
             >
               WhatsApp
             </a>
@@ -54,8 +55,9 @@ const Footer = () => {
             {" "}
             <a
               className={styles.href}
-              href={!privateRoom && "https://t.me/HelloW0Rd"}
+              href={"https://t.me/HelloW0Rd"}
               target="_blank"
+              rel="noreferrer"
             >
               Наш телеграм
             </a>

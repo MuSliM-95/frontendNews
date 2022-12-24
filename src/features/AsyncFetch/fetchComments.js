@@ -16,17 +16,18 @@ export const fetchCommentsGet = () => {
       const json = await res.json();
       dispatch({ type: GET_COMMENTS_FULFILLED, payload: json });
     } catch (error) {
-      console.log(error);
-      dispatch({ type: GET_COMMENTS_REJECTED, payload: error.message });
+      dispatch({
+        type: GET_COMMENTS_REJECTED,
+        payload: "Ошибка при вывода комментарии",
+      });
     }
   };
 };
 
 export const fetchAddComment = (newsId, text, user_id) => {
   const state = store.getState();
-  console.log(`Bearer ${state.userReducer.token}`);
   return async (dispatch) => {
-    dispatch({type: ADD_COMMENTS_PENDING})
+    dispatch({ type: ADD_COMMENTS_PENDING });
     try {
       const res = await fetch(`http://localhost:4000/comments`, {
         method: "POST",
@@ -34,14 +35,16 @@ export const fetchAddComment = (newsId, text, user_id) => {
           Authorization: `Bearer ${state.userReducer.token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({newsId, text, user_id})
-      })
+        body: JSON.stringify({ newsId, text, user_id }),
+      });
       const json = await res.json();
-      console.log(json);
-      
-      dispatch({type: ADD_COMMENTS_FULFILLED})
+
+      dispatch({ type: ADD_COMMENTS_FULFILLED });
     } catch (error) {
-      dispatch({type: ADD_COMMENTS_REJECTED, payload: error})
+      dispatch({
+        type: ADD_COMMENTS_REJECTED,
+        payload: "Извините отправка комментарии временно не доступен",
+      });
     }
   };
 };

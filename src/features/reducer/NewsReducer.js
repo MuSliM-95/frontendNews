@@ -15,7 +15,7 @@ const initialState = {
   news: [],
   text: "",
   error: null, 
-  loading: Boolean,
+  loading: false,
   categories: [],
   newsLink: "",
 };

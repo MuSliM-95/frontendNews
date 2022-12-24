@@ -11,7 +11,6 @@ const Main = () => {
   const news = useSelector((state) => state.newsReducer.news);
   const text = useSelector((state) => state.newsReducer.text);
   const error = useSelector((state) => state.newsReducer.error);
-  const privateRoom = useSelector((state) => state.userReducer.userPersonal)
   
   // console.log(error);
 
@@ -19,7 +18,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(fetchNews());
-  }, [dispatch]);
+  }, [news]);
 
   const newsFilter = news.filter(
     (el) => el.name.toLowerCase().indexOf(text.toLowerCase()) !== -1
@@ -43,7 +42,7 @@ const Main = () => {
             onClick={ () => handleNewsLink(el._id)}
             key={el._id}
             className={styles.newsBlokc}
-            to={!privateRoom && "/news"}
+            to={ "/news"}
           >
             <img
               className={styles.imageNews}

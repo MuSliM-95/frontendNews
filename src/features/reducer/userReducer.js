@@ -18,12 +18,12 @@ import {
 
 const initialState = {
   userId: localStorage.getItem("user"),
-  loading: false,
   token: localStorage.getItem("token"),
+  loading: false,
   user: [],
   error: null,
   registration: false,
-  userPersonal: false,
+  userById: ""
 };
 
 export default function userReducer(state = initialState, action) {
@@ -85,11 +85,12 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
+        error: null
       };
     case FINDBYID_USERS_FULFILLED:
       return {
         ...state,
-        user: action.payload,
+        userById: action.payload,
         loading: false,
         error: null,
       };

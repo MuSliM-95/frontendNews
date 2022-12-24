@@ -12,26 +12,23 @@ const News = () => {
 
   const news = useSelector((state) => state.newsReducer.newsLink);
   const error = useSelector((state) => state.newsReducer.error);
-  const privateRoom = useSelector((state) => state.userReducer.userPersonal);
-  const comments = useSelector((state) => state.commentsReducer.comments);
+  // const comments = useSelector((state) => state.commentsReducer.comments);
 
   const dispatch = useDispatch()
 
-  // const a = new Date((new Date()).getTime() + 0 * 3600 * 1000)
-
 
   const handleCommentComponent = () => {
-    if (!privateRoom) {
+    
       setCommentComponents(!commentComponents);
       dispatch(readCategoriesRemove())
-    }
+   
   };
 
   if (error) {
     return <Navigate to="/error/" />;
   }
   return (
-    <div className={styles.news}>
+    <div key={news._id} className={styles.news}>
       <img
         className={styles.img}
         src={news.imageSrc ? `http://localhost:4000/${news.imageSrc}` : logo}

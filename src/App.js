@@ -7,7 +7,9 @@ import Signin from "./pages/signin/Signin";
 import Signup from "./pages/signup/Signup";
 import { useSelector } from "react-redux";
 import store from "./features/store/NewsStore";
-import ErrorNews from "./pages/errorPages/ErrorNews";
+import ErrorNews from "./pages/errorPage/ErrorNews";
+import PersonalAreaPage from "./pages/privatPage/PersonalAreaPage";
+
 
 function App() {
   const token = useSelector((state) => state.userReducer.token);
@@ -28,6 +30,7 @@ function App() {
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Navigate to={"/signin"} replace />} />
           <Route path="error" element={<ErrorNews />} />
+          <Route path="personalArea" element={<PersonalAreaPage to={"/signin"} />} />
         </Routes>
       </BrowserRouter>
     );
@@ -43,6 +46,7 @@ function App() {
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
           <Route path="error" element={<ErrorNews />} />
+          <Route path="personalArea" element={<Navigate to={"/signin"} />} />
         </Routes>
       </BrowserRouter>
     );
@@ -58,6 +62,7 @@ function App() {
           <Route path="signin" element={<Navigate to={"/mainPage"} />} />
           <Route path="signup" element={<Navigate to={"/mainPage"} />} />
           <Route path="error" element={<ErrorNews />} />
+          <Route path="personalArea" element={<PersonalAreaPage to={"/personalArea"} />} />
         </Routes>
       </BrowserRouter>
     );

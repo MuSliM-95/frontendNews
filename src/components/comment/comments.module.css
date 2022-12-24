@@ -1,12 +1,30 @@
 
+.myCommentsBlock {
+    background-color: rgba(58, 82, 82, 0.034);
+    margin-top: -1.1vw;
+}
 
+.theyCommentsBlock {
+    
+}
 
-.comments {
+.myComments {
     margin-left: 3vw;
     
 }
 
-.commentsTime {
+.theyComments {
+    margin-left: 30vw;
+    
+}
+
+.theyCommentsTime {
+    margin-left: 30vw;
+    font-size: 0.7vw;
+    /* margin-top: 0.5vw; */
+}
+
+.myCommentsTime {
     margin-left: 3vw;
     font-size: 0.7vw;
     margin-top: 0.5vw;

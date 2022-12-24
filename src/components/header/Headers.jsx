@@ -8,12 +8,10 @@ import { FilterText } from "../../features/reducer/newsReducer";
 import Categories from "./categoriBlock/Categories";
 import { fetchNews } from "../../features/AsyncFetch/fetchNews";
 import { Link } from "react-router-dom";
-import PrivateRoom from "../privateRoom/PrivateRoom";
 import {
   categoriesBlock,
   readCategoriesRemove,
 } from "../../features/reducer/categoriesReducer";
-import { personal } from "../../features/reducer/userReducer";
 import { fetchCategories } from "../../features/AsyncFetch/fetchCategories";
 
 
@@ -22,7 +20,6 @@ const Headers = () => {
 
   const dispatch = useDispatch();
 
-  const privateRoom = useSelector((state) => state.userReducer.userPersonal);
   const token = useSelector((state) => state.userReducer.token);
   const categoriBlock = useSelector(
     (state) => state.newsCategoriesFindByid.categoriBlock
@@ -41,16 +38,16 @@ const Headers = () => {
 
 
   const handleCategories = () => {
-    if (!privateRoom) {
+    
       dispatch(categoriesBlock());
       dispatch(fetchCategories());
       
-    }
+  
   };
   const handleCategoriesRemove = () => {
-    if (!privateRoom) {
+  
       dispatch(readCategoriesRemove());
-    }
+   
   };
 
   const handleNews = () => {
@@ -58,12 +55,8 @@ const Headers = () => {
     dispatch(readCategoriesRemove());
   };
 
-  const handlePrivateRoom = () => {
-    if (!privateRoom) {
-      dispatch(personal(!privateRoom));
-      dispatch(readCategoriesRemove());
-    }
-  };
+
+  
   useEffect(() => {
     dispatch(FilterText(text));
   }, [text]);
@@ -71,7 +64,7 @@ const Headers = () => {
   return (
     <div className={styles.header}>
       <div onClick={handleNews} className={styles.flagbloc}>
-        <Link className={styles.Link} to={!privateRoom && "mainPage"}>
+        <Link className={styles.Link} to={"mainPage"}>
           <p className={styles.header_text}>NEWS</p>
           <img className={styles.flag} src={logoFlag} alt="logo" />
         </Link>
@@ -81,7 +74,7 @@ const Headers = () => {
           className={styles.input}
           type="text"
           value={text}
-          onChange={!privateRoom && handleVelue}
+          onChange={ handleVelue}
         />
         <img className={styles.search} src={search} alt="images.png" />
       </div>
@@ -98,19 +91,14 @@ const Headers = () => {
         </div>
       )}{" "}
       <Link
-        to={!token && "/signin/"}
-        onClick={handlePrivateRoom}
+        to={ "/personalArea/"}
         className={styles.logo_user_bloc}
+        onClick={handleNews}
       >
         <img className={styles.user_logo} src={user} alt="logo" />
         <p className={styles.header_text}>Personal Area</p>
       </Link>
-      {privateRoom && (
-        <div className={styles.PrivateRoom}>
-          {" "}
-          <PrivateRoom />
-        </div>
-      )}
+  
     </div>
   );
 };

@@ -26,9 +26,12 @@ export const fetchRegistration = (nickname, login, password) => {
         },
       });
       const json = await res.json();
-      dispatch({ type: REGISTRATION_USERS_FULFILLED });
+      dispatch({ type: REGISTRATION_USERS_FULFILLED, payload: json });
     } catch (error) {
-      dispatch({ type: REGISTRATION_USERS_REJECTED, payload: error.message });
+      dispatch({
+        type: REGISTRATION_USERS_REJECTED,
+        payload: "Ошибка при регистрацци",
+      });
     }
   };
 };
@@ -51,7 +54,7 @@ export const fetchLogin = (login, password) => {
         localStorage.setItem("user", json.user)
       );
     } catch (error) {
-      dispatch({ type: LOGIN_USERS_REJECTED, payload: error.message });
+      dispatch({ type: LOGIN_USERS_REJECTED, payload: "Ошибка авторизации" });
     }
   };
 };
@@ -70,7 +73,10 @@ export const userFindByid = (id) => {
       const json = await res.json();
       dispatch({ type: FINDBYID_USERS_FULFILLED, payload: json });
     } catch (error) {
-      dispatch({ type: FINDBYID_USERS_REJECTED, payload: error.message });
+      dispatch({
+        type: FINDBYID_USERS_REJECTED,
+        payload: "Ошибка при выводе users по id",
+      });
     }
   };
 };
@@ -83,7 +89,10 @@ export const fetchUserGet = () => {
       const json = await res.json();
       dispatch({ type: GET_USERS_FULFILLED, payload: json });
     } catch (error) {
-      dispatch({ type: GET_USERS_REJECTED, payload: error.message });
+      dispatch({
+        type: GET_USERS_REJECTED,
+        payload: "Ошибка при выводе users",
+      });
     }
   };
 };

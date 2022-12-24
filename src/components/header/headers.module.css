@@ -94,9 +94,3 @@
     
 }
 
-.PrivateRoom {
-    position: absolute;
-    display: flex;
-  margin-top: 40vw;
-  cursor: pointer;
-}

@@ -15,7 +15,7 @@ export const fetchNews = () => {
       const json = await res.json();
       dispatch({ type: GET_NEWS_FULFILLED, payload: json });
     } catch (error) {
-      dispatch({ type: GET_NEWS_REJECTED, payload: error.message });
+      dispatch({ type: GET_NEWS_REJECTED, payload: "Ошибка при выводе новостей" });
     }
   };
 };
@@ -28,7 +28,7 @@ export const fetchByid = (id) => {
       const json = await res.json();
       dispatch({ type: FINDBYID_NEWS_FULFILLED, payload: json });
     } catch (error) {
-      dispatch({ type: FINDBYID_NEWS_REJECTED, payload: error.message });
+      dispatch({ type: FINDBYID_NEWS_REJECTED, payload: "Ошибка при выводе новостей по Id" });
     }
   };
 };

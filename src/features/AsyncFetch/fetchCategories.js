@@ -17,7 +17,7 @@ export const fetchCategories = () => {
     } catch (error) {
       dispatch({
         type: GET_CATEGORIES_REJECTED,
-        payload: error.message,
+        payload: "Ошибка при выводе категории",
       });
     }
   };
@@ -36,7 +36,7 @@ export const fetchCategoriesByid = (id) => {
     } catch (error) {
       dispatch({
         type: FINDBYID_NEWS_CATEGORIES_REJECTED,
-        payload: error.message,
+        payload: "Ошибка при выводе категории по id",
       });
     }
   };
