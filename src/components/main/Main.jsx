@@ -6,31 +6,35 @@ import styles from "./main.module.css";
 import logo from "../../assets/Default.png";
 import { Navigate } from "react-router-dom";
 import { readCategoriesRemove } from "../../features/reducer/categoriesReducer";
+import loadingLogo from "../../assets/new-loading.gif";
 
 const Main = () => {
   const news = useSelector((state) => state.newsReducer.news);
   const text = useSelector((state) => state.newsReducer.text);
   const error = useSelector((state) => state.newsReducer.error);
-  
-  // console.log(error);
+  const loading = useSelector((state) => state.newsReducer.loading);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchNews());
-  }, [news]);
+  }, [dispatch]);
 
   const newsFilter = news.filter(
     (el) => el.name.toLowerCase().indexOf(text.toLowerCase()) !== -1
   );
 
   const handleNewsLink = (id) => {
-    
     dispatch(fetchByid(id));
-    dispatch(readCategoriesRemove())
-
+    dispatch(readCategoriesRemove());
   };
-
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <img className={styles.loadingLogo} src={loadingLogo} alt="preloader" />
+      </div>
+    );
+  }
   if (error) {
     return <Navigate to="/error" />;
   }
@@ -39,10 +43,10 @@ const Main = () => {
       {newsFilter.map((el) => {
         return (
           <Link
-            onClick={ () => handleNewsLink(el._id)}
+            onClick={() => handleNewsLink(el._id)}
             key={el._id}
             className={styles.newsBlokc}
-            to={ "/news"}
+            to={"/news"}
           >
             <img
               className={styles.imageNews}

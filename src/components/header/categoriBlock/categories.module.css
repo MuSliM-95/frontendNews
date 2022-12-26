@@ -10,3 +10,19 @@
 .el {
     cursor: pointer;
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+}
+
+.loadingLogo {
+    height: 5vw;
+    width: 5vw;
+}
+
+.error {
+   display: flex;
+   justify-content: center;
+   color: red;
+}

@@ -25,7 +25,7 @@ export const newsReducer = (state = initialState, action) => {
     case GET_NEWS_PENDING:
       return {
         ...state,
-        loading: true, 
+        loading: true,
         error: null
       };
     case GET_NEWS_REJECTED:
@@ -39,7 +39,7 @@ export const newsReducer = (state = initialState, action) => {
         ...state,
         news: [...state.news, ...(state.news = [])],
         news: [...state.news, ...action.payload],
-        loading: true,
+        loading: false,
         error: null,
       };
     case TEXT:

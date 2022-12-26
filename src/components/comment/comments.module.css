@@ -2,20 +2,27 @@
 .myCommentsBlock {
     background-color: rgba(58, 82, 82, 0.034);
     margin-top: -1.1vw;
+
 }
 
 .theyCommentsBlock {
     
 }
 
-.myComments {
+.myNickname {
+    margin-left: 30vw;;
+    
+}
+
+.theyUserNickname {
     margin-left: 3vw;
     
 }
 
-.theyComments {
-    margin-left: 30vw;
-    
+.myComments {
+width: 30vw;
+word-break: break-all; 
+
 }
 
 .theyCommentsTime {
@@ -28,4 +35,25 @@
     margin-left: 3vw;
     font-size: 0.7vw;
     margin-top: 0.5vw;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+}
+
+.errorBlock {
+    color: red;
+    margin-left: 2vw;
+    
+}
+
+.button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.commentsDelete {
+
 }

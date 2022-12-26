@@ -38,8 +38,9 @@ export const fetchAddComment = (newsId, text, user_id) => {
         body: JSON.stringify({ newsId, text, user_id }),
       });
       const json = await res.json();
+      console.log(json);
 
-      dispatch({ type: ADD_COMMENTS_FULFILLED });
+      dispatch({ type: ADD_COMMENTS_FULFILLED, payload: json });
     } catch (error) {
       dispatch({
         type: ADD_COMMENTS_REJECTED,

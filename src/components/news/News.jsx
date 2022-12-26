@@ -6,24 +6,27 @@ import Comments from "../../components/comment/Comments";
 import comments_Logo from "../../assets/comments.png";
 import { Navigate } from "react-router-dom";
 import { readCategoriesRemove } from "../../features/reducer/categoriesReducer";
+import loadingLogo from "../../assets/new-loading.gif";
 
 const News = () => {
   const [commentComponents, setCommentComponents] = useState(false);
 
   const news = useSelector((state) => state.newsReducer.newsLink);
   const error = useSelector((state) => state.newsReducer.error);
-  // const comments = useSelector((state) => state.commentsReducer.comments);
+  const loading = useSelector((state) => state.newsReducer.loading);
 
-  const dispatch = useDispatch()
-
-
+  const dispatch = useDispatch();
   const handleCommentComponent = () => {
-    
-      setCommentComponents(!commentComponents);
-      dispatch(readCategoriesRemove())
-   
+    setCommentComponents(!commentComponents);
+    dispatch(readCategoriesRemove());
   };
-
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <img className={styles.loadingLogo} src={loadingLogo} alt="preloader" />
+      </div>
+    );
+  }
   if (error) {
     return <Navigate to="/error/" />;
   }

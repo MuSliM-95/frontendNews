@@ -26,11 +26,12 @@ export const fetchRegistration = (nickname, login, password) => {
         },
       });
       const json = await res.json();
+      // console.log(json);
       dispatch({ type: REGISTRATION_USERS_FULFILLED, payload: json });
     } catch (error) {
       dispatch({
         type: REGISTRATION_USERS_REJECTED,
-        payload: "Ошибка при регистрацци",
+        payload: "Ошибка при регистрации",
       });
     }
   };
@@ -71,6 +72,7 @@ export const userFindByid = (id) => {
         },
       });
       const json = await res.json();
+      
       dispatch({ type: FINDBYID_USERS_FULFILLED, payload: json });
     } catch (error) {
       dispatch({

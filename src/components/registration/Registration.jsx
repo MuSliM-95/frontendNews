@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { fetchRegistration } from "../../features/AsyncFetch/fetchUsers";
 import styles from "./registration.module.css";
 import loadingLogo from "../../assets/new-loading.gif";
@@ -9,10 +9,10 @@ const Registration = () => {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.userReducer.loading);
+  const errorRegistration = useSelector((state) => state.userReducer.errorRegistration);
   const error = useSelector((state) => state.userReducer.error);
 
   const [passwordError, setPasswordError] = useState("");
-
   const [niсk, setNiсk] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -47,6 +47,9 @@ const Registration = () => {
       </div>
     );
   }
+  if(error) {
+   return <Navigate to={'/error'}/>
+  }
   return (
     <div className={styles.signinBloc}>
       <div className={styles.inputSignin}>
@@ -80,7 +83,7 @@ const Registration = () => {
             required
           />
         </div>
-        <div className={styles.error}>{error || passwordError}</div>
+        <div className={styles.error}>{errorRegistration || passwordError}</div>
         <div>
           <button onClick={handleRegistration} className={styles.signinButton}>
             Регистрация

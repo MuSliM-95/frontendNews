@@ -57,8 +57,10 @@ margin-top: 1.5vw;
 
     position: absolute;
     margin-top: 20vw;
-    margin-left: 6vw;
+    width: 25%;
     color: red;
+    font-size: 10px;
+    margin-left: 3vw;
 
 
 }

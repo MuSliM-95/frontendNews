@@ -20,7 +20,6 @@ const Headers = () => {
 
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.userReducer.token);
   const categoriBlock = useSelector(
     (state) => state.newsCategoriesFindByid.categoriBlock
   );
@@ -53,6 +52,8 @@ const Headers = () => {
   const handleNews = () => {
     dispatch(fetchNews());
     dispatch(readCategoriesRemove());
+    dispatch()
+
   };
 
 

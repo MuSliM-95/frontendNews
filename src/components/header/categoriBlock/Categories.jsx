@@ -2,8 +2,9 @@ import styles from "./categories.module.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategoriesByid } from "../../../features/AsyncFetch/fetchCategories";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { readCategoriesRemove } from "../../../features/reducer/categoriesReducer";
+import loadingLogo from "../../../assets/new-loading.gif";
 
 const Categories = () => {
   const dispatch = useDispatch();
@@ -12,21 +13,22 @@ const Categories = () => {
     (state) => state.newsCategoriesFindByid.categories
   );
   const error = useSelector((state) => state.newsCategoriesFindByid.error);
-
-  // console.log(error);
+  const loading = useSelector((state) => state.newsCategoriesFindByid.loading);
 
   const handleReadCateoriesId = (id) => {
     dispatch(fetchCategoriesByid(id));
     dispatch(readCategoriesRemove());
   };
 
-  if (error) {
+  if (loading) {
     return (
-      <>
-        <h1>Error404...</h1>
-        <Link to={"/"}></Link>
-      </>
+      <div className={styles.loading}>
+        <img className={styles.loadingLogo} src={loadingLogo} alt="preloader" />
+      </div>
     );
+  }
+  if (error) {
+    return <div className={styles.error}>Ошибка...</div>
   }
   return (
     <div className={styles.categoriesBacraund}>

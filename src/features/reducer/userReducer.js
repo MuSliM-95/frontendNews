@@ -22,8 +22,11 @@ const initialState = {
   loading: false,
   user: [],
   error: null,
+  errorRegistration: null,
+  errorLogin: null,
   registration: false,
-  userById: ""
+  userById: "",
+  findUserError: null
 };
 
 export default function userReducer(state = initialState, action) {
@@ -32,31 +35,38 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: null,
+        errorRegistration: null,
+        error :null,
+        registration: false,
       };
     case REGISTRATION_USERS_FULFILLED:
       return {
         ...state,
-        error: null,
+        errorRegistration: action.payload.error || null,
         loading: false,
-        registration: true,
+        registration: action.payload.error ? false : true,
+        error :null,
       };
     case REGISTRATION_USERS_REJECTED:
       return {
         ...state,
         loading: false,
-        error: action.payload,
+        errorRegistration: null,
+        registration: false,
+        error : action.payload,
       };
     case LOGIN_USERS_PENDING:
       return {
         ...state,
         loading: true,
-        error: null,
+        errorLogin: null,
+        error : null,
       };
     case LOGIN_USERS_REJECTED:
       return {
         ...state,
-        error: action.payload,
+        errorLogin: null,
+        error : action.payload,
         loading: false,
         token: null,
       };
@@ -66,8 +76,8 @@ export default function userReducer(state = initialState, action) {
         token: action.payload.token,
         userId: action.payload.user,
         loading: false,
-        error: null,
-        registration: false,
+        errorLogin: action.payload.error || null,
+        error : null,
       };
     case REMOVE:
       return {
@@ -79,20 +89,22 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         registration: false,
+        error: null
+
       };
 
     case FINDBYID_USERS_PENDING:
       return {
         ...state,
         loading: true,
-        error: null
+        error: null,
       };
     case FINDBYID_USERS_FULFILLED:
       return {
         ...state,
         userById: action.payload,
         loading: false,
-        error: null,
+        error: null
       };
     case FINDBYID_USERS_REJECTED:
       return {
@@ -112,7 +124,7 @@ export default function userReducer(state = initialState, action) {
         user: [...state.user, ...(state.user = [])],
         user: [...state.user, ...action.payload],
         loading: false,
-        error: null,
+        error: null
       };
     case GET_USERS_REJECTED:
       return {
@@ -120,11 +132,11 @@ export default function userReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
       };
-      case USERS:
-        return {
-          ...state, 
-          userPersonal: action.payload
-        }
+    case USERS:
+      return {
+        ...state,
+        userPersonal: action.payload,
+      };
     default:
       return state;
   }

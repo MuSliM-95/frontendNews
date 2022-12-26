@@ -5,6 +5,7 @@ import {
   GET_COMMENTS_FULFILLED,
   GET_COMMENTS_PENDING,
   GET_COMMENTS_REJECTED,
+  UPDATE_ERROR_COMMENTS,
 } from "../types";
 
 const initialState = {
@@ -13,8 +14,6 @@ const initialState = {
   error: null,
   addCommetError: null,
   loading: false,
-  commentsUpdate: false
-
 };
 
 export const commentsReducer = (state = initialState, action) => {
@@ -44,18 +43,26 @@ export const commentsReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         addCommetError: null,
+        error: null,
       };
     case ADD_COMMENTS_FULFILLED:
       return {
         ...state,
         loading: false,
-        addCommetError: null,
+        addCommetError: action.payload.error || null,
+        error: null,
       };
     case ADD_COMMENTS_REJECTED:
       return {
         ...state,
         loading: false,
-        addCommetError: action.payload,
+        addCommetError: null,
+        error: action.payload,
+      };
+    case UPDATE_ERROR_COMMENTS:
+      return {
+        ...state,
+        addCommetError: null,
       };
 
     default:

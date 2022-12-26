@@ -28,3 +28,14 @@
     cursor: pointer;
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vw;
+}
+
+.loadingLogo {
+    height: 30vw;
+    width: 30vw;
+}

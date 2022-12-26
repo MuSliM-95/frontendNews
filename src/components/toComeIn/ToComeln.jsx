@@ -1,22 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { fetchLogin } from "../../features/AsyncFetch/fetchUsers";
 import styles from "./toComeln.module.css";
 import loadingLogo from "../../assets/new-loading.gif";
 import { REGISTRATION } from "../../features/types";
 
 const ToComeln = () => {
+  const errorLogin = useSelector((state) => state.userReducer.errorLogin);
   const error = useSelector((state) => state.userReducer.error);
   const loading = useSelector((state) => state.userReducer.loading);
-
- 
-  const dispatch = useDispatch();
-
+  
   const [textLogin, setTextLogin] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+  
   const handleTextLogin = (e) => {
     setTextLogin(e.target.value);
   };
@@ -42,6 +42,9 @@ const ToComeln = () => {
       </div>
     );
   }
+  if(error) {
+    return <Navigate to={"/error"}/>
+  }
   return (
     <div className={styles.signinBloc}>
       <div className={styles.inputSignin}>
@@ -65,7 +68,7 @@ const ToComeln = () => {
           />
         </div>
         <div>
-          <div className={styles.error}>{error}</div>
+          <div className={styles.error}>{errorLogin}</div>
           <button onClick={handleLogin} className={styles.signinButton}>
             Войти
           </button>
