@@ -2,6 +2,9 @@ import {
   ADD_COMMENTS_FULFILLED,
   ADD_COMMENTS_PENDING,
   ADD_COMMENTS_REJECTED,
+  COMMENTS_REMOVE_FULFILLED,
+  COMMENTS_REMOVE_PENDING,
+  COMMENTS_REMOVE_REJECTED,
   GET_COMMENTS_FULFILLED,
   GET_COMMENTS_PENDING,
   GET_COMMENTS_REJECTED,
@@ -64,6 +67,28 @@ export const commentsReducer = (state = initialState, action) => {
         ...state,
         addCommetError: null,
       };
+
+      case COMMENTS_REMOVE_PENDING:
+        return {
+          ...state,
+          loading: true,
+          error: null,
+          addCommetError: null,
+        }
+        case COMMENTS_REMOVE_FULFILLED:
+          return {
+            ...state, 
+            loading: false,
+            error: null,
+            addCommetError: action.payload.error || null
+          }
+          case COMMENTS_REMOVE_REJECTED: 
+          return  {
+            ...state,
+            loading: false,
+            error: action.payload,
+            addCommetError: null
+          }
 
     default:
       return state;

@@ -2,11 +2,12 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { fetchCommentsGet } from "../../features/AsyncFetch/fetchComments";
+import { fetchCommentsDelete, fetchCommentsGet } from "../../features/AsyncFetch/fetchComments";
 import { fetchUserGet } from "../../features/AsyncFetch/fetchUsers";
 import Button from "./button/Button";
 import styles from "./comments.module.css";
 import loadingLogo from "../../assets/new-loading.gif";
+import basket from "../../assets/basket.png";
 import { UPDATE_ERROR_COMMENTS } from "../../features/types";
 
 const Comments = () => {
@@ -31,6 +32,9 @@ const Comments = () => {
     dispatch({ type: UPDATE_ERROR_COMMENTS });
   };
 
+  const handleCommentsRemove = (id) => {
+    dispatch(fetchCommentsDelete(id));
+  };
   if (addCommetError || error) {
     return (
       <div className={styles.errorBlock}>
@@ -48,43 +52,31 @@ const Comments = () => {
           <div key={el._id}>
             {user.map((item) => {
               return (
-                <div
-                  key={item._id}
-                  className={
-                    el.user_id === userId
-                      ? styles.myCommentsBlock
-                      : styles.theyCommentsBlock
-                  }
-                >
+                <div>
                   {el.user_id === item._id && news._id === el.newsId && (
-                    <h4
-                      className={
-                        el.user_id === userId
-                          ? styles.myNickname
-                          : styles.theyNickname
-                      }
-                    >
-                      {item.nickname}
-                    </h4>
-                  )}
-                  <div className={styles.myComments}>
-                    {el.user_id === item._id &&
-                      news._id === el.newsId &&
-                      el.text}
-                  </div>
-                  {el.user_id === item._id && news._id === el.newsId && (
-                    <div
-                      className={
-                        el.user_id === userId
-                          ? styles.theyCommentsTime
-                          : styles.myCommentsTime
-                      }
-                    >
-                      {el.time - new Date() > 86400000 ? el.date : el.hour}
-                      {/* <button className={styles.commentsDelete}>x</button> */}
+                    <div>
+                      <div className={styles.commentContainer}>
+                        <div className={styles.commentsBlock}>
+                          <p className={styles.commentText}>{el.text}</p>
+                          <img
+                            className={styles.basketLogo}
+                            src={basket}
+                            alt="basketLogo"
+                            onClick={() => handleCommentsRemove(el._id)}
+                          />
+                        </div>
+                        <div className={styles.myNameBlock}>
+                          <h3 className={styles.nickname}>{item.nickname}</h3>
+                          <h6>
+                            {el.time - new Date() > 86400000
+                              ? el.date
+                              : el.hour}
+                          </h6>
+                        </div>
+                      </div>
+                      <hr className={styles.hr} />
                     </div>
                   )}
-                  {el.user_id === item._id && news._id === el.newsId && <hr />}
                 </div>
               );
             })}

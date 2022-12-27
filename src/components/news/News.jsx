@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./news.module.css";
 import logo from "../../assets/Default.png";
@@ -7,6 +7,7 @@ import comments_Logo from "../../assets/comments.png";
 import { Navigate } from "react-router-dom";
 import { readCategoriesRemove } from "../../features/reducer/categoriesReducer";
 import loadingLogo from "../../assets/new-loading.gif";
+import { fetchByid } from "../../features/AsyncFetch/fetchNews";
 
 const News = () => {
   const [commentComponents, setCommentComponents] = useState(false);
@@ -20,6 +21,12 @@ const News = () => {
     setCommentComponents(!commentComponents);
     dispatch(readCategoriesRemove());
   };
+
+  console.log(news, news?._id);
+  useEffect(() => {
+    dispatch(fetchByid(news?._id));
+  }, [dispatch]);
+  
   if (loading) {
     return (
       <div className={styles.loading}>

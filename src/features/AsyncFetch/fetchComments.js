@@ -3,6 +3,9 @@ import {
   ADD_COMMENTS_FULFILLED,
   ADD_COMMENTS_PENDING,
   ADD_COMMENTS_REJECTED,
+  COMMENTS_REMOVE_FULFILLED,
+  COMMENTS_REMOVE_PENDING,
+  COMMENTS_REMOVE_REJECTED,
   GET_COMMENTS_FULFILLED,
   GET_COMMENTS_PENDING,
   GET_COMMENTS_REJECTED,
@@ -49,3 +52,22 @@ export const fetchAddComment = (newsId, text, user_id) => {
     }
   };
 };
+
+export const  fetchCommentsDelete = (id) => {
+  const state = store.getState();
+  return async (dispatch) => {
+dispatch({type: COMMENTS_REMOVE_PENDING })
+try {
+  const res = await fetch(`http://localhost:4000/comments/${id}`,{
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${state.userReducer.token}`,
+        "Content-Type": "application/json"
+  }
+})
+  const json = await res.json()
+  dispatch({type: COMMENTS_REMOVE_FULFILLED, payload: json})
+} catch (error) {
+  dispatch({type: COMMENTS_REMOVE_REJECTED, payload: "Извините ошибка при удаление комментарий"})
+}}
+}
